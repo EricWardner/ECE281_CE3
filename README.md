@@ -72,4 +72,7 @@ nextfloor <= 	"0001" when (floor_state = floor1) and (stop = '1') else
 					"0011" when (floor_state = floor4) and (up_down = '0') else
 					"0001";  --phantom state
 ```
-
+#####Testbench
+The testbench for the Mealy machine is the same as the Moore with slightly different self-checker.
+![alt tag](https://raw.github.com/EricWardner/ECE281_CE3/master/Mealy_Capture.PNG)
+The testbench results show that the elevator starts at level 1 (0001) and rises a level and waits at that level for 2 clock periods everytime the stop becomes 0. When the elevator reaches level 4 (0100), it descends back to 1. The self-checker explicitly shows the change in levels. 
