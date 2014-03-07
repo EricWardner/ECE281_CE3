@@ -57,6 +57,8 @@ ARCHITECTURE behavior OF Moore_testbench_Wardner IS
    signal reset : std_logic := '0';
    signal stop : std_logic := '0';
    signal up_down : std_logic := '0';
+	
+	SIGNAL floorNum : std_logic_vector(3 downto 0) := "0000";
 
  	--Outputs
    signal floor : std_logic_vector(3 downto 0);
@@ -94,35 +96,58 @@ BEGIN
       wait for clk_period*10;
 
       -- insert stimulus here
+--			floorNum <= "0000";
+			
 			reset<='1';
 			wait for clk_period*2;
 			reset<='0';
-			assert(floor = "0000") report "Current Floor is"&integer'image(to_integer(unsigned((floor)))) severity note;
-			stop <= '0';
-			up_down <= '1';			
-			wait for clk_period*2;
-			stop <= '1';
-			wait for clk_period*2;
 			
-			assert(floor = "0001") report "Current Floor is"&integer'image(to_integer(unsigned((floor)))) severity note;
-			stop <= '0';			
-			wait for clk_period*2;
-			stop <= '1';
-			wait for clk_period*2;
+			for i in 1 to 4 loop
+				wait for clk_period*2;				
+				assert(floor = floorNum ) report "Current Floor is"&integer'image(to_integer(unsigned((floor)))) severity note;
+				stop <= '0';
+				up_down <= '1';
+				wait for clk_period*2;
+				stop <= '1';
+				floorNum <= floorNum + "0001";
+			end loop;			
 			
-			assert(floor = "0010") report "Current Floor is"&integer'image(to_integer(unsigned((floor)))) severity note;
-			stop <= '0';			
-			wait for clk_period*2;
-			stop <= '1';
-			wait for clk_period*2;
-			
-			assert(floor = "0011") report "Current Floor is"&integer'image(to_integer(unsigned((floor)))) severity note;
 			stop <= '0';
 			up_down <= '0';
-			wait for clk_period*6;
-			
+			wait for clk_period*6;			
 			assert(floor = "0000") report "Current Floor is"&integer'image(to_integer(unsigned((floor)))) severity note;
 			
+
+			
+			
+			
+--			reset<='0';
+--			assert(floor = "0000") report "Current Floor is"&integer'image(to_integer(unsigned((floor)))) severity note;
+--			stop <= '0';
+--			up_down <= '1';			
+--			wait for clk_period*2;
+--			stop <= '1';
+--			wait for clk_period*2;
+--			
+--			assert(floor = "0001") report "Current Floor is"&integer'image(to_integer(unsigned((floor)))) severity note;
+--			stop <= '0';			
+--			wait for clk_period*2;
+--			stop <= '1';
+--			wait for clk_period*2;
+--			
+--			assert(floor = "0010") report "Current Floor is"&integer'image(to_integer(unsigned((floor)))) severity note;
+--			stop <= '0';			
+--			wait for clk_period*2;
+--			stop <= '1';
+--			wait for clk_period*2;
+--			
+--			assert(floor = "0011") report "Current Floor is"&integer'image(to_integer(unsigned((floor)))) severity note;
+--			stop <= '0';
+--			up_down <= '0';
+--			wait for clk_period*6;
+--			
+--			assert(floor = "0000") report "Current Floor is"&integer'image(to_integer(unsigned((floor)))) severity note;
+--			
 
       wait;
    end process;
