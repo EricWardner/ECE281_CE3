@@ -79,10 +79,10 @@ The testbench results show that the elevator starts at level 1 (0001) and rises 
 
 ####Questions
 Moore: is reset synchronous or --asynchronous? <br />
-	-synchronus, changes with the clock. <br />
+        -synchronus, changes with the clock. <br />
 Mealy: is reset synchronous or --asynchronous? <br />
-	-asynchronus, dependent on output as well. <br />
+        -asynchronus, dependent on output as well. <br />
 What is the clock frequency?  <br />
-	-1/10ns, freq = 1/period <br />
+        -1/10ns, freq = 1/period <br />
 What value would we set to simulate a 50MHz clock? <br />
-	-1/t = 50,000,000, 20ns <br />
+        -1/t = 50,000,000, 20ns <br />
