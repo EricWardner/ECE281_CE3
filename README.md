@@ -78,11 +78,11 @@ The testbench for the Mealy machine is the same as the Moore with slightly diffe
 The testbench results show that the elevator starts at level 1 (0001) and rises a level and waits at that level for 2 clock periods everytime the stop becomes 0. When the elevator reaches level 4 (0100), it descends back to 1. The self-checker explicitly shows the change in levels. 
 
 ####Questions
-Moore: is reset synchronous or --asynchronous?
-	-synchronus, changes with the clock.
-Mealy: is reset synchronous or --asynchronous?
-	-asynchronus, dependent on output as well.
-What is the clock frequency? 
-	-1/10ns, freq = 1/period
-What value would we set to simulate a 50MHz clock?
-	-1/t = 50,000,000, 20ns
+Moore: is reset synchronous or --asynchronous? <br />
+	-synchronus, changes with the clock. <br />
+Mealy: is reset synchronous or --asynchronous? <br />
+	-asynchronus, dependent on output as well. <br />
+What is the clock frequency?  <br />
+	-1/10ns, freq = 1/period <br />
+What value would we set to simulate a 50MHz clock? <br />
+	-1/t = 50,000,000, 20ns <br />
