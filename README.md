@@ -3,7 +3,7 @@ ECE281_CE3
 ##Elevator Controller
 VHDL code and testbench that simulates an elevator controller which traverses 4 floors
 ####Moore Machine
-Implementaion of elevator controller as a Moore Machine
+Implementaion of elevator controller as a Moore Machine, the output only depends on the state in a Moore Machine.
 ######Code Design
 Began with the given shell, goal was to edit the process that defined the floor state.
 
@@ -23,6 +23,14 @@ Began with the given shell, goal was to edit the process that defined the floor 
 						floor_state <= floor4;
 					end if;
 ```
+Also had to define the output logic, in a Moore Machine, the output logic only depends on the state.
+```VHDL
+floor <= "0001" when (floor_state = floor1) else
+			"0010" when (floor_state = floor2) else
+			"0011" when (floor_state = floor3) else
+			"0100" when (floor_state = floor4) else
+			"0001";
+```
 #####Testbench
 The testbench implemented a for loop to traverse through all 4 levels of the elevator, to change levels up, up_down was kept at 1 and stop was changed with the clock.
 
@@ -38,3 +46,30 @@ for i in 1 to 4 loop
 end loop;
 ```
 ![alt tag](https://raw.github.com/EricWardner/ECE281_CE3/master/Moore_Capture.PNG)
+The testbench results show that the elevator starts at level 1 (0001) and rises a level and waits at that level for 2 clock periods everytime the stop becomes 0. When the elevator reaches level 4 (0100), it descends back to 1. The self-checker explicitly shows the change in levels. 
+
+####Moore Machine
+Implementaion of elevator controller as a Mealy Machine
+######Code Design
+The only difference in the Mealy Machine is the output logic. To implement this in VHDL some rearranging had to be done.
+```VHDL
+floor <= "0001" when (floor_state = floor1) else
+			"0010" when (floor_state = floor2) else
+			"0011" when (floor_state = floor3) else
+			"0100" when (floor_state = floor4) else
+			"0001";
+nextfloor <= 	"0001" when (floor_state = floor1) and (stop = '1') else
+					"0010" when (floor_state = floor2) and (stop = '1') else
+					"0011" when (floor_state = floor3) and (stop = '1') else
+					"0100" when (floor_state = floor4) and (stop = '1') else
+					"0010" when (floor_state = floor1) and (up_down = '1') and (stop = '0') else
+					"0011" when (floor_state = floor2) and (up_down = '1') and (stop = '0') else
+					"0100" when (floor_state = floor3) and (up_down = '1') and (stop = '0') else
+					"0100" when (floor_state = floor4) and (up_down = '1') and (stop = '0') else
+					"0001" when (floor_state = floor1) and (up_down = '0') and (stop = '0') else
+					"0001" when (floor_state = floor2) and (up_down = '0') and (stop = '0') else
+					"0010" when (floor_state = floor3) and (up_down = '0') and (stop = '0') else
+					"0011" when (floor_state = floor4) and (up_down = '0') else
+					"0001";  --phantom state
+```
+
