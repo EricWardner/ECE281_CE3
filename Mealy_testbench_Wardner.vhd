@@ -59,7 +59,7 @@ ARCHITECTURE behavior OF Mealy_testbench_Wardner IS
    signal stop : std_logic := '0';
    signal up_down : std_logic := '0';
 	
-	SIGNAL floorNum : std_logic_vector(3 downto 0) := "0000";
+	SIGNAL floorNum : std_logic_vector(3 downto 0) := "0001";
 
  	--Outputs
    signal floor : std_logic_vector(3 downto 0);
@@ -105,11 +105,15 @@ BEGIN
 			
 			for i in 1 to 4 loop
 				wait for clk_period*2;				
-				assert(floor = floorNum ) report "Current Floor is"&integer'image(to_integer(unsigned((floor)))) severity note;
+				assert(floor = floorNum ) report "FAIL! Current Floor is"&integer'image(to_integer(unsigned((floor)))) severity note;
+				assert(floor = floorNum-1 ) report "SUCCESS! Current Floor is"&integer'image(to_integer(unsigned((floor)))) severity note;
 				stop <= '0';
 				up_down <= '1';
 				wait for clk_period;
-				assert(nextfloor = floorNum ) report "Next Floor is"&integer'image(to_integer(unsigned((nextfloor)))) severity note;
+				if (floorNum < "0100") then
+				assert(nextfloor = floorNum+1) report "FAIL! Next Floor is"&integer'image(to_integer(unsigned((nextfloor)))) severity note;
+				end if;
+				assert(nextfloor = floorNum) report "SUCCESS! Next Floor is"&integer'image(to_integer(unsigned((nextfloor)))) severity note;
 				wait for clk_period;
 				
 				stop <= '1';
@@ -119,7 +123,7 @@ BEGIN
 			stop <= '0';
 			up_down <= '0';
 			wait for clk_period*6;			
-			assert(floor = "0000") report "Current Floor is"&integer'image(to_integer(unsigned((floor)))) severity note;
+			assert(floor = "0000") report "SUCCESS! Current Floor is"&integer'image(to_integer(unsigned((floor)))) severity note;
 			
 
 
