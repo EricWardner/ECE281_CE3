@@ -101,7 +101,10 @@ for i in 1 to 4 loop
 ![alt tag](https://raw.github.com/EricWardner/ECE281_CE3/master/Mealy_Capture.PNG)
 The testbench results show that the elevator starts at level 1 (0001) and rises a level and waits at that level for 2 clock periods everytime the stop becomes 0. When the elevator reaches level 4 (0100), it descends back to 1. The self-checker explicitly shows the change in levels. 
 
-####Questions
+###Debugging
+I forgot that binary numbers need to have quotes around them to be interpreted properly.
+It took a little while to find the right place between clock changes to put my assert statements.
+###Questions
 **Moore: is reset synchronous or --asynchronous?** <br />
        &nbsp;&nbsp;&nbsp;&nbsp; -synchronus, changes with the clock. <br />
 **Mealy: is reset synchronous or --asynchronous?** <br />
@@ -110,3 +113,5 @@ The testbench results show that the elevator starts at level 1 (0001) and rises 
         &nbsp;&nbsp;&nbsp;&nbsp;-1/10ns, freq = 1/period <br />
 **What value would we set to simulate a 50MHz clock?** <br />
        &nbsp;&nbsp;&nbsp;&nbsp;-1/t = 50,000,000, 20ns <br />
+####Documentation
+C3C Tyler Spence helped be realize that a Mealy machine is dependant on both the state and the input.
