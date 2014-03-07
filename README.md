@@ -1,7 +1,7 @@
 ECE281_CE3
 ==========
 ##Elevator Controller
-VHDL code and testbench that simulates an elevator controller which traverses 4 floors
+VHDL code and testbench that simulates an elevator controller that traverses 4 floors
 ####Moore Machine
 Implementaion of elevator controller as a Moore Machine, the output only depends on the state in a Moore Machine.
 ######Code Design
