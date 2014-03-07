@@ -108,10 +108,12 @@ It took a little while to find the right place between clock changes to put my a
 **Moore: is reset synchronous or --asynchronous?** <br />
        &nbsp;&nbsp;&nbsp;&nbsp; -synchronus, changes with the clock. <br />
 **Mealy: is reset synchronous or --asynchronous?** <br />
-       &nbsp;&nbsp;&nbsp;&nbsp; -asynchronus, dependent on output as well. <br />
+       &nbsp;&nbsp;&nbsp;&nbsp; -synchronus, dependent on clock as well. <br />
 **What is the clock frequency?**  <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;-1/10ns, freq = 1/period <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;-1/10ns 100MHz, freq = 1/period <br />
 **What value would we set to simulate a 50MHz clock?** <br />
        &nbsp;&nbsp;&nbsp;&nbsp;-1/t = 50,000,000, 20ns <br />
+**If up_down is set to "go up" and stop is set to "don't stop" which floor do we want to go to?** <br />
+       &nbsp;&nbsp;&nbsp;&nbsp;The next floor up, untill the max floor is reached in which case the floor doesn't change. <br />
 ####Documentation
 C3C Tyler Spence helped be realize that a Mealy machine is dependant on both the state and the input.
