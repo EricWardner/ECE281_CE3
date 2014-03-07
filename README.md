@@ -37,3 +37,4 @@ for i in 1 to 4 loop
 	floorNum <= floorNum + "0001";
 end loop;
 ```
+![alt tag](https://raw.github.com/EricWardner/ECE281_CE3/master/Moore_Capture.PNG)
