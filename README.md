@@ -76,3 +76,13 @@ nextfloor <= 	"0001" when (floor_state = floor1) and (stop = '1') else
 The testbench for the Mealy machine is the same as the Moore with slightly different self-checker.
 ![alt tag](https://raw.github.com/EricWardner/ECE281_CE3/master/Mealy_Capture.PNG)
 The testbench results show that the elevator starts at level 1 (0001) and rises a level and waits at that level for 2 clock periods everytime the stop becomes 0. When the elevator reaches level 4 (0100), it descends back to 1. The self-checker explicitly shows the change in levels. 
+
+####Questions
+Moore: is reset synchronous or --asynchronous?
+	-synchronus, changes with the clock.
+Mealy: is reset synchronous or --asynchronous?
+	-asynchronus, dependent on output as well.
+What is the clock frequency? 
+	-1/10ns, freq = 1/period
+What value would we set to simulate a 50MHz clock?
+	-1/t = 50,000,000, 20ns
