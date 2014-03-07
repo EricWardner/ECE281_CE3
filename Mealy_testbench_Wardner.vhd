@@ -108,7 +108,10 @@ BEGIN
 				assert(floor = floorNum ) report "Current Floor is"&integer'image(to_integer(unsigned((floor)))) severity note;
 				stop <= '0';
 				up_down <= '1';
-				wait for clk_period*2;
+				wait for clk_period;
+				assert(nextfloor = floorNum ) report "Next Floor is"&integer'image(to_integer(unsigned((nextfloor)))) severity note;
+				wait for clk_period;
+				
 				stop <= '1';
 				floorNum <= floorNum + "0001";
 			end loop;			
