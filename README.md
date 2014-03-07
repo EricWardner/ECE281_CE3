@@ -37,7 +37,8 @@ The testbench implemented a for loop to traverse through all 4 levels of the ele
 ```VHDL
 for i in 1 to 4 loop
 	wait for clk_period*2;				
-	assert(floor = floorNum ) report "Current Floor is"&integer'image(to_integer(unsigned((floor)))) severity note;
+	assert(floor = floorNum ) report "FAIL! Current Floor is"&integer'image(to_integer(unsigned((floor)))) severity note;
+	assert(floor = floorNum-1 ) report "SUCESS! Current Floor is"&integer'image(to_integer(unsigned((floor)))) severity note;
 	stop <= '0';
 	up_down <= '1';
 	wait for clk_period*2;
@@ -74,6 +75,29 @@ nextfloor <= 	"0001" when (floor_state = floor1) and (stop = '1') else
 ```
 #####Testbench
 The testbench for the Mealy machine is the same as the Moore with slightly different self-checker.
+```VHDL
+for i in 1 to 4 loop
+				wait for clk_period*2;				
+				assert(floor = floorNum ) report "FAIL! Current Floor is"&integer'image(to_integer(unsigned((floor)))) severity note;
+				assert(floor = floorNum-1 ) report "SUCCESS! Current Floor is"&integer'image(to_integer(unsigned((floor)))) severity note;
+				stop <= '0';
+				up_down <= '1';
+				wait for clk_period;
+				if (floorNum < "0100") then
+				assert(nextfloor = floorNum+1) report "FAIL! Next Floor is"&integer'image(to_integer(unsigned((nextfloor)))) severity note;
+				end if;
+				assert(nextfloor = floorNum) report "SUCCESS! Next Floor is"&integer'image(to_integer(unsigned((nextfloor)))) severity note;
+				wait for clk_period;
+				
+				stop <= '1';
+				floorNum <= floorNum + "0001";
+			end loop;			
+			
+			stop <= '0';
+			up_down <= '0';
+			wait for clk_period*6;			
+			assert(floor = "0000") report "SUCCESS! Current Floor is"&integer'image(to_integer(unsigned((floor)))) severity note;
+```
 ![alt tag](https://raw.github.com/EricWardner/ECE281_CE3/master/Mealy_Capture.PNG)
 The testbench results show that the elevator starts at level 1 (0001) and rises a level and waits at that level for 2 clock periods everytime the stop becomes 0. When the elevator reaches level 4 (0100), it descends back to 1. The self-checker explicitly shows the change in levels. 
 
