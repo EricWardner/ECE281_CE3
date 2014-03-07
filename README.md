@@ -99,7 +99,7 @@ for i in 1 to 4 loop
 			assert(floor = "0000") report "SUCCESS! Current Floor is"&integer'image(to_integer(unsigned((floor)))) severity note;
 ```
 ![alt tag](https://raw.github.com/EricWardner/ECE281_CE3/master/Mealy_Capture.PNG)
-The testbench results show that the elevator starts at level 1 (0001) and rises a level and waits at that level for 2 clock periods everytime the stop becomes 0. When the elevator reaches level 4 (0100), it descends back to 1. The self-checker explicitly shows the change in levels. 
+The testbench results show that the elevator starts at level 1 (0001) and rises a level and waits at that level for 2 clock periods everytime the stop becomes 0. When the elevator reaches level 4 (0100), it descends back to 1. The self-checker explicitly shows the change in levels. The next level is also shown corectly by the self checker.  
 
 ###Debugging
 I forgot that binary numbers need to have quotes around them to be interpreted properly.
