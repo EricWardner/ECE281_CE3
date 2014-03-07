@@ -5,7 +5,16 @@ VHDL code and testbench that simulates an elevator controller which traverses 4 
 ####Moore Machine
 Implementaion of elevator controller as a Moore Machine, the output only depends on the state in a Moore Machine.
 ######Code Design
-Began with the given shell, goal was to edit the process that defined the floor state.
+Began with the given shell, goal was to edit the process that defined the floor state. There was an inefficent piece of code found in the given shell.
+```VHDL
+clk'event and clk='1'
+```
+was changed to
+```VHDL
+RISING_EDGE(CLK)
+```
+
+The if statements were then filled in.
 
 ```VHDL
 				when floor3 =>
