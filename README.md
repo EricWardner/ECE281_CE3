@@ -102,11 +102,11 @@ for i in 1 to 4 loop
 The testbench results show that the elevator starts at level 1 (0001) and rises a level and waits at that level for 2 clock periods everytime the stop becomes 0. When the elevator reaches level 4 (0100), it descends back to 1. The self-checker explicitly shows the change in levels. 
 
 ####Questions
-*Moore: is reset synchronous or --asynchronous? <br />
+**Moore: is reset synchronous or --asynchronous?** <br />
        &nbsp;&nbsp;&nbsp;&nbsp; -synchronus, changes with the clock. <br />
-*Mealy: is reset synchronous or --asynchronous? <br />
+**Mealy: is reset synchronous or --asynchronous?** <br />
        &nbsp;&nbsp;&nbsp;&nbsp; -asynchronus, dependent on output as well. <br />
-*What is the clock frequency?  <br />
+**What is the clock frequency?**  <br />
         &nbsp;&nbsp;&nbsp;&nbsp;-1/10ns, freq = 1/period <br />
-*What value would we set to simulate a 50MHz clock? <br />
+**What value would we set to simulate a 50MHz clock?** <br />
        &nbsp;&nbsp;&nbsp;&nbsp;-1/t = 50,000,000, 20ns <br />
